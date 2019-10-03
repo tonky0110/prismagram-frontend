@@ -8,3 +8,5 @@ install npm modules
  - react-apollo-hooks
  - apollo-boost
  - react-helmet
+ - react-toastify
+ - styled-reset
