@@ -38,6 +38,7 @@ export default ({
         </form> 
       )}
     </Form>
+    {action !== 'confirm' && (
     <StateChnager>
       {action === 'logIn' ? (
         <>
@@ -51,5 +52,6 @@ export default ({
         </>
       )}
     </StateChnager>
+    )}
   </Wrapper>
 );
