@@ -72,7 +72,8 @@ const ME = gql`
 
 export default withRouter(({ history }) => {
 	const search = useInput('');
-	const meQuery = useQuery(ME);
+	const { data } = useQuery(ME);
+	data && data.me && console.log(data.me);
 	const onSearchSubmit = (e) => {
 		e.preventDefault();
 		console.log('search.value: ', search.value);
@@ -98,7 +99,7 @@ export default withRouter(({ history }) => {
 					<HeaderLink to="/notifications">
 						<HeartEmpty />
 					</HeaderLink>
-					<HeaderLink to="/username">
+					<HeaderLink to={data && data.me ? data.me.username : '/#'}>
 						<User />
 					</HeaderLink>
 				</HeaderColumn>
