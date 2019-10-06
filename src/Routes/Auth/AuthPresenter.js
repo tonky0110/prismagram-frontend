@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import {Helmet} from 'rl-react-helmet';
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
 import { Wrapper, StateChnager, Link, Form } from "./AuthStyled";

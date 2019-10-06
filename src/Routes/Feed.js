@@ -1,5 +1,5 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'rl-react-helmet';
 import styled from 'styled-components';
 import {} from 'react-router-dom';
 import { gql } from 'apollo-boost';
@@ -45,7 +45,6 @@ const Wrapper = styled.div`
 
 export default () => {
 	const { data, loading } = useQuery(FEED_QUERY);
-	console.log(data, loading);
 	return (
 		<Wrapper>
 			<Helmet>
