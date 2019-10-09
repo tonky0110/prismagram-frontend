@@ -55,6 +55,17 @@ const PostContainer = ({
 		}
 	};
 
+	// Enter key가 입력되는 이벤트 캐치를 위한 Function
+	const onKeyUp = (e) => {
+		e.preventDefault();
+		const { key } = e; // keyCode === 13
+		if ('Enter' === key) {
+			comment.setValue('');
+			addCommentMutation();
+		}
+		return;
+	};
+
 	return (
 		<PostPresenter
 			user={user}
@@ -70,6 +81,7 @@ const PostContainer = ({
 			newComment={comment}
 			currentItem={currentItem}
 			toggleLike={toggleLike}
+			onKeyUp={onKeyUp}
 		/>
 	);
 };
