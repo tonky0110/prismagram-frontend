@@ -106,7 +106,8 @@ export default ({
 	newComment,
 	currentItem = 0,
 	toggleLike,
-	onKeyUp
+	onKeyPress,
+	selfComments
 }) => {
 	return (
 		<Post>
@@ -138,6 +139,15 @@ export default ({
 								{comment.text}
 							</Comment>
 						))}
+						{selfComments.map((comment) => {
+							console.log('selfComment.comment: ', comment);
+							return (
+								<Comment key={comment.id}>
+									<FatText text={comment.user.username} />
+									{comment.text}
+								</Comment>
+							);
+						})}
 					</Comments>
 				)}
 				<Timestamp>{createdAt}</Timestamp>
@@ -145,7 +155,7 @@ export default ({
 					placeholder={'Add a comment...'}
 					value={newComment.value}
 					onChange={newComment.onChange}
-					onKeyUp={onKeyUp}
+					onKeyPress={onKeyPress}
 				/>
 			</Meta>
 		</Post>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useMutation } from 'react-apollo-hooks';
+import { useMutation, useQuery } from 'react-apollo-hooks';
 import useInput from '../../Hooks/useInput';
 import PostPresenter from './PostPresenter';
 import { ADD_COMMENT, TOGGLE_LIKE } from './PostQueries';
-import { is } from 'css-select';
+import { ME } from '../../SharedQueries';
 import { toast } from 'react-toastify';
 
 const PostContainer = ({
@@ -21,6 +21,7 @@ const PostContainer = ({
 	const [ isLikedState, setIsLikedState ] = useState(isLiked);
 	const [ likeCountState, setLikeCountState ] = useState(likeCount);
 	const [ currentItem, setCurrentItem ] = useState(0);
+	const [ selfComments, setSelfComments ] = useState([]);
 	const comment = useInput('');
 	const [ toggleLikeMutation ] = useMutation(TOGGLE_LIKE, {
 		variables: { postId: id }
@@ -56,12 +57,17 @@ const PostContainer = ({
 	};
 
 	// Enter key가 입력되는 이벤트 캐치를 위한 Function
-	const onKeyUp = (e) => {
-		e.preventDefault();
-		const { key } = e; // keyCode === 13
-		if ('Enter' === key) {
-			comment.setValue('');
-			addCommentMutation();
+	const onKeyPress = async (e) => {
+		const { which } = e;
+		if (which === 13 && comment.value.trim() !== '') {
+			e.preventDefault();
+			try {
+				const { data: { addComment } } = await addCommentMutation();
+				setSelfComments([ ...selfComments, addComment ]);
+				comment.setValue('');
+			} catch (error) {
+				toast.error("You can't send comment.");
+			}
 		}
 		return;
 	};
@@ -81,7 +87,8 @@ const PostContainer = ({
 			newComment={comment}
 			currentItem={currentItem}
 			toggleLike={toggleLike}
-			onKeyUp={onKeyUp}
+			onKeyPress={onKeyPress}
+			selfComments={selfComments}
 		/>
 	);
 };
