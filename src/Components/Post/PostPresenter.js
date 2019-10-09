@@ -139,15 +139,12 @@ export default ({
 								{comment.text}
 							</Comment>
 						))}
-						{selfComments.map((comment) => {
-							console.log('selfComment.comment: ', comment);
-							return (
-								<Comment key={comment.id}>
-									<FatText text={comment.user.username} />
-									{comment.text}
-								</Comment>
-							);
-						})}
+						{selfComments.map((comment) => (
+							<Comment key={comment.id}>
+								<FatText text={comment.user.username} />
+								{comment.text}
+							</Comment>
+						))}
 					</Comments>
 				)}
 				<Timestamp>{createdAt}</Timestamp>
