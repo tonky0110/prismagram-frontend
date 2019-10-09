@@ -13,7 +13,11 @@ const Animation = keyframes`
     opacity: 0
   }
 `;
-const Loader = styled.div`animation: ${Animation} 1s linear infinite;`;
+const Loader = styled.div`
+	animation: ${Animation} 1s linear infinite;
+	width: 100%;
+	text-align: center;
+`;
 
 export default () => (
 	<Loader>
