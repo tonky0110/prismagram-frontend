@@ -9,6 +9,7 @@ const Post = styled.div`
 	${(props) => props.theme.whiteBox};
 	width: 100%;
 	max-width: 600px;
+	user-select: none;
 	margin-bottom: 25px;
 `;
 
@@ -93,7 +94,8 @@ export default ({
 	likeCount,
 	setLikeCountState,
 	newComment,
-	currentItem = 0
+	currentItem = 0,
+	toggleLike
 }) => {
 	return (
 		<Post>
@@ -111,7 +113,7 @@ export default ({
 			</Files>
 			<Meta>
 				<Buttons>
-					<Button>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
+					<Button onClick={toggleLike}>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
 					<Button>
 						<Comment />
 					</Button>
