@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useMutation } from 'react-apollo-hooks';
 import { FOLLOW, UNFOLLOW } from './FollowButtonQueries';
 import FollowButtonPresenter from './FollowButtonPresenter';
-import FollowButtonContainer from '.';
 
 const FollowButtonConatainer = ({ isFollowing, id }) => {
 	const [ isFollowingS, setIsFollowing ] = useState(isFollowing);

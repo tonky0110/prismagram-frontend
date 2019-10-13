@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import FatText from '../../Components/Footer';
+import FatText from '../../Components/FatText';
 import Loader from '../../Components/Loader';
 import UserCard from '../../Components/UserCard';
 
@@ -18,6 +18,8 @@ const Section = styled.div`
 	grid-template-rows: 160px;
 	grid-auto-rows: 160px;
 `;
+
+const PostSection = styled.div``;
 
 const SearchPresenter = ({ searchTerm, loading, data }) => {
 	if (searchTerm === undefined) {
@@ -57,7 +59,9 @@ const SearchPresenter = ({ searchTerm, loading, data }) => {
 					{data.searchPost.length === 0 ? (
 						<FatText text={'No Post Found.'} />
 					) : (
-						data.searchPost.map((post) => null)
+						data.searchPost.map((post) => {
+							return post.caption;
+						})
 					)}
 				</Section>
 			</Wrapper>
