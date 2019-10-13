@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'rl-react-helmet';
 import Avatar from '../../Components/Avatar';
+import Button from '../../Components/Button';
 import Loader from '../../Components/Loader';
 import FatText from '../../Components/FatText';
 import FollowButton from '../../Components/FollowButton';
@@ -45,7 +46,7 @@ const Posts = styled.div`
 	grid-template-rows: 200px;
 	grid-auto-rows: 200px;
 `;
-const ProfilePresenter = ({ loading, data }) => {
+const ProfilePresenter = ({ loading, logOut, data }) => {
 	if (loading) {
 		return (
 			<Wrapper>
@@ -91,7 +92,11 @@ const ProfilePresenter = ({ loading, data }) => {
 						</Counts>
 						<UsernameRow>
 							<Username>{username} </Username>
-							{!isSelf && <FollowButton isFollowing={isFollowing} id={id} />}
+							{isSelf ? (
+								<Button onClick={logOut} text={'Log out'} />
+							) : (
+								<FollowButton isFollowing={isFollowing} id={id} />
+							)}
 						</UsernameRow>
 						<FullName text={fullName} />
 						<Bio>{bio}</Bio>

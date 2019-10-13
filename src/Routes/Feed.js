@@ -40,7 +40,7 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-height: 80vh;
+	min-height: 70vh;
 `;
 
 export default () => {
